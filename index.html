@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>NAIGC Nationals 2026 — Competition Results Dashboard</title>
+    <style>
+        body { margin: 0; padding: 1rem; background: #f5f6fa; }
+    </style>
+</head>
+<body>
+
+<!-- NAIGC Nationals 2026 - Competition Results Dashboard (Embed Version) -->
+<!-- Designed for embedding inside a WordPress page via WP Bakery Raw HTML block -->
+<style>
+    .nrd-dashboard { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color: #333; line-height: 1.5; }
+    .nrd-dashboard * { box-sizing: border-box; }
+    .nrd-dashboard .nrd-header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 2rem 2rem 1.5rem; text-align: center; border-radius: 10px 10px 0 0; margin-bottom: 0; }
+    .nrd-dashboard .nrd-header h1 { font-size: 1.8rem; font-weight: 700; margin: 0 0 0.3rem 0; padding: 0; color: white; }
+    .nrd-dashboard .nrd-header .subtitle { font-size: 1rem; opacity: 0.8; }
+    .nrd-dashboard .nrd-header .generated { font-size: 0.75rem; opacity: 0.5; margin-top: 0.5rem; }
+    .nrd-dashboard .nrd-main { max-width: 1200px; margin: 0 auto; padding: 1.5rem 0; }
+    .nrd-dashboard .section { margin-bottom: 2rem; }
+    .nrd-dashboard .section-title { font-size: 1.3rem; font-weight: 700; color: #1a1a2e; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e0e0e0; }
+    .nrd-dashboard .section-subtitle { font-size: 0.85rem; color: #666; margin-top: -0.7rem; margin-bottom: 1rem; }
+
+    .nrd-dashboard .card-grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+    .nrd-dashboard .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .nrd-dashboard .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .nrd-dashboard .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .nrd-dashboard .grid-5 { grid-template-columns: repeat(5, 1fr); }
+    .nrd-dashboard .grid-6 { grid-template-columns: repeat(6, 1fr); }
+    @media (max-width: 768px) { .nrd-dashboard .grid-3,.nrd-dashboard .grid-4,.nrd-dashboard .grid-5,.nrd-dashboard .grid-6 { grid-template-columns: repeat(2, 1fr); } .nrd-dashboard .grid-2 { grid-template-columns: 1fr; } }
+    @media (max-width: 480px) { .nrd-dashboard .grid-2,.nrd-dashboard .grid-3,.nrd-dashboard .grid-4,.nrd-dashboard .grid-5,.nrd-dashboard .grid-6 { grid-template-columns: 1fr; } }
+
+    .nrd-dashboard .card { background: white; border-radius: 10px; padding: 1.2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); text-align: center; }
+    .nrd-dashboard .card .label { font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.3rem; }
+    .nrd-dashboard .card .value { font-size: 2rem; font-weight: 700; color: #1a1a2e; }
+    .nrd-dashboard .card.hero .value { font-size: 2.5rem; }
+    .nrd-dashboard .card.wag { border-left: 4px solid #e74c8b; }
+    .nrd-dashboard .card.mag { border-left: 4px solid #3498db; }
+    .nrd-dashboard .card.tnt { border-left: 4px solid #2ecc71; }
+    .nrd-dashboard .card.special { border-left: 4px solid #f39c12; }
+    .nrd-dashboard .card .detail { font-size: 0.75rem; color: #999; margin-top: 0.3rem; }
+
+    .nrd-dashboard .data-table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 1rem; }
+    .nrd-dashboard .data-table th { background: #1a1a2e; color: white; padding: 0.75rem 1rem; text-align: left; font-size: 0.85rem; font-weight: 600; cursor: pointer; user-select: none; white-space: nowrap; }
+    .nrd-dashboard .data-table th:hover { background: #2a2a4e; }
+    .nrd-dashboard .data-table th .sort-arrow { margin-left: 4px; font-size: 0.7rem; opacity: 0.5; }
+    .nrd-dashboard .data-table th .sort-arrow.active { opacity: 1; }
+    .nrd-dashboard .data-table td { padding: 0.6rem 1rem; border-bottom: 1px solid #f0f0f0; font-size: 0.9rem; }
+    .nrd-dashboard .data-table tr:last-child td { border-bottom: none; }
+    .nrd-dashboard .data-table tr:nth-child(even) { background: #fafbfc; }
+    .nrd-dashboard .data-table .num { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .nrd-dashboard .data-table th.num-col { text-align: right; }
+    .nrd-dashboard .data-table .total-row { background: #f0f2f5 !important; font-weight: 700; }
+
+    .nrd-dashboard .chart-container { background: white; border-radius: 10px; padding: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 1rem; }
+    .nrd-dashboard .chart-container canvas { max-height: 400px; }
+
+    .nrd-dashboard .disc-header { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.85rem; font-weight: 600; color: white; margin-bottom: 0.5rem; margin-right: 0.5rem; }
+    .nrd-dashboard .disc-header.wag { background: #e74c8b; }
+    .nrd-dashboard .disc-header.mag { background: #3498db; }
+    .nrd-dashboard .disc-header.tnt { background: #2ecc71; }
+
+    .nrd-dashboard .filter-bar { margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+    .nrd-dashboard .filter-bar label { font-weight: 600; font-size: 0.9rem; }
+    .nrd-dashboard .filter-bar select { padding: 0.4rem 0.8rem; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9rem; background: white; }
+
+    .nrd-dashboard .pill-group { display: flex; gap: 0; margin-bottom: 0.75rem; }
+    .nrd-dashboard .pill { padding: 0.5rem 1.2rem; border: 1px solid #ccc; background: white; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.15s; }
+    .nrd-dashboard .pill:first-child { border-radius: 6px 0 0 6px; }
+    .nrd-dashboard .pill:last-child { border-radius: 0 6px 6px 0; }
+    .nrd-dashboard .pill:not(:last-child) { border-right: none; }
+    .nrd-dashboard .pill.active { background: #1a1a2e; color: white; border-color: #1a1a2e; }
+    .nrd-dashboard .pill:hover:not(.active) { background: #f0f2f5; }
+
+    .nrd-dashboard .level-checks { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem; align-items: center; }
+    .nrd-dashboard .level-checks label { font-size: 0.85rem; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 0.3rem; }
+    .nrd-dashboard .level-checks input[type="checkbox"] { cursor: pointer; accent-color: #1a1a2e; }
+    .nrd-dashboard .level-checks .lbl-prefix { font-weight: 600; font-size: 0.85rem; color: #666; margin-right: 0.25rem; }
+    .nrd-dashboard .no-data-msg { padding: 2rem; text-align: center; color: #999; font-style: italic; background: white; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 1rem; }
+
+    .nrd-dashboard .chart-stack .chart-container { margin-bottom: 1rem; }
+    .nrd-dashboard .chart-stack .chart-container canvas { max-height: 350px; }
+
+    .nrd-dashboard .nrd-loading { text-align: center; padding: 3rem 1rem; }
+    .nrd-dashboard .nrd-loading h2 { font-size: 1.4rem; color: #1a1a2e; margin-bottom: 1rem; }
+    .nrd-dashboard .loading-bar { width: 300px; height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden; margin: 0 auto; }
+    .nrd-dashboard .loading-bar-fill { height: 100%; background: linear-gradient(135deg, #e74c8b, #3498db); border-radius: 4px; transition: width 0.3s; width: 0%; }
+    .nrd-dashboard .loading-status { margin-top: 0.75rem; font-size: 0.85rem; color: #666; }
+    .nrd-dashboard .loading-detail { margin-top: 0.3rem; font-size: 0.75rem; color: #999; }
+
+    .nrd-dashboard .nrd-footer { text-align: center; padding: 2rem; color: #999; font-size: 0.8rem; }
+</style>
+
+<div class="nrd-dashboard" id="nrd-dashboard">
+    <div class="nrd-loading" id="nrd-loading">
+        <h2>Loading Competition Data...</h2>
+        <div class="loading-bar"><div class="loading-bar-fill" id="nrd-loading-bar-fill"></div></div>
+        <div class="loading-status" id="nrd-loading-status">Initializing...</div>
+        <div class="loading-detail" id="nrd-loading-detail"></div>
+    </div>
+
+    <div id="nrd-content" style="display:none;">
+        <div class="nrd-header">
+            <h1>NAIGC Nationals 2026</h1>
+            <div class="subtitle">Competition Results Dashboard</div>
+            <div class="generated">For rules committee review</div>
+        </div>
+
+        <div class="nrd-main">
+            <!-- GLOBAL FILTERS -->
+            <div class="filter-bar" id="nrd-global-filters">
+                <label for="nrd-filter-discipline">Discipline:</label>
+                <select id="nrd-filter-discipline">
+                    <option value="all">All</option>
+                    <option value="WAG">WAG</option>
+                    <option value="MAG">MAG</option>
+                    <option value="T&T">T&amp;T</option>
+                </select>
+                <label for="nrd-filter-category">Category:</label>
+                <select id="nrd-filter-category">
+                    <option value="all">All Categories</option>
+                    <option value="Collegiate Women">Collegiate Women</option>
+                    <option value="Community Women">Community Women</option>
+                    <option value="Collegiate Men">Collegiate Men</option>
+                    <option value="Community Men">Community Men</option>
+                </select>
+            </div>
+
+            <!-- 1. COMPETITION OVERVIEW -->
+            <div class="section" id="nrd-section-overview">
+                <h2 class="section-title">Competition Overview</h2>
+                <div class="card-grid grid-3" id="nrd-overview-hero"></div>
+                <div class="card-grid grid-3" id="nrd-overview-discipline"></div>
+                <div class="card-grid grid-3" id="nrd-overview-scores"></div>
+            </div>
+
+            <!-- 2. SCORE DISTRIBUTIONS -->
+            <div class="section">
+                <h2 class="section-title">Score Distributions by Apparatus</h2>
+                <p class="section-subtitle">Distribution of final scores in 0.5-point bins. Stacked by level when multiple levels are selected.</p>
+                <div class="pill-group" id="nrd-score-dist-pills"></div>
+                <div class="level-checks" id="nrd-score-dist-levels"></div>
+                <div class="chart-stack" id="nrd-score-dist-charts"></div>
+            </div>
+
+            <!-- 3. START VALUE DISTRIBUTIONS -->
+            <div class="section">
+                <h2 class="section-title">Start Value Distributions</h2>
+                <p class="section-subtitle">Distribution of start values (difficulty scores) from roster data, by apparatus and level</p>
+                <div class="pill-group" id="nrd-sv-dist-pills"></div>
+                <div class="level-checks" id="nrd-sv-dist-levels"></div>
+                <div class="chart-stack" id="nrd-sv-dist-charts"></div>
+            </div>
+
+            <!-- 4. SUMMARY STATISTICS -->
+            <div class="section">
+                <h2 class="section-title">Score Summary Statistics</h2>
+                <p class="section-subtitle">Mean, median, standard deviation, min/max for each apparatus by discipline and level</p>
+                <div class="pill-group" id="nrd-stats-pills"></div>
+                <div class="level-checks" id="nrd-stats-levels"></div>
+                <div id="nrd-stats-tables"></div>
+            </div>
+
+            <!-- 5. FINALS QUALIFIER ANALYSIS -->
+            <div class="section">
+                <h2 class="section-title">Finals Qualifier Analysis</h2>
+                <p class="section-subtitle">Demographics and patterns among athletes who qualified individually for event finals</p>
+                <div class="card-grid grid-3" id="nrd-quals-cards"></div>
+                <div class="card-grid grid-2" id="nrd-quals-team-cards"></div>
+                <div class="chart-container"><canvas id="nrd-chart-quals-category"></canvas></div>
+                <div id="nrd-quals-level-table-container"></div>
+                <h3 style="font-size:1.1rem; margin:1.5rem 0 0.75rem; color:#1a1a2e;">Multi-Event Qualifiers</h3>
+                <div class="card-grid grid-2" id="nrd-quals-multi-container">
+                    <div class="chart-container" style="margin-bottom:0"><canvas id="nrd-chart-quals-multi"></canvas></div>
+                    <div id="nrd-quals-multi-table-container"></div>
+                </div>
+                <h3 style="font-size:1.1rem; margin:1.5rem 0 0.75rem; color:#1a1a2e;">Qualification Cutoffs</h3>
+                <div class="pill-group" id="nrd-cutoff-pills"></div>
+                <div class="level-checks" id="nrd-cutoff-levels"></div>
+                <div id="nrd-quals-cutoff-container"></div>
+            </div>
+
+            <!-- 6. DIFFICULTY TRENDS -->
+            <div class="section">
+                <h2 class="section-title">Apparatus Difficulty by Level</h2>
+                <p class="section-subtitle">Average start values by level, showing difficulty progression and level-appropriate calibration. Error bars show &plusmn;1 standard deviation.</p>
+                <div class="pill-group" id="nrd-difficulty-pills"></div>
+                <div class="chart-container"><canvas id="nrd-chart-difficulty-bars"></canvas></div>
+                <div class="chart-container"><canvas id="nrd-chart-difficulty-lines"></canvas></div>
+            </div>
+
+            <!-- 7. EXECUTION ANALYSIS -->
+            <div class="section">
+                <h2 class="section-title">Execution Analysis (Score - Start Value)</h2>
+                <p class="section-subtitle">Implied execution scores computed as Final Score minus Start Value, where roster SV data is available</p>
+                <div class="pill-group" id="nrd-execution-pills"></div>
+                <div class="level-checks" id="nrd-execution-levels"></div>
+                <div class="chart-container"><canvas id="nrd-chart-execution"></canvas></div>
+                <div id="nrd-execution-table-container"></div>
+            </div>
+        </div>
+
+        <div class="nrd-footer">NAIGC Nationals 2026 Competition Results Dashboard</div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3"></script>
+<script>
+(function() {
+    'use strict';
+
+    function $(id) { return document.getElementById(id); }
+
+    // ============================================================
+    // DATA SOURCES
+    // ============================================================
+    var DATA_SOURCES = {
+        wag_individual_prelims: 'https://docs.google.com/spreadsheets/d/10arO4TtzJMUjrA_Io9ITePIVh7lXrJsv/edit',
+        wag_team_prelims: 'https://docs.google.com/spreadsheets/d/1c6iUkVUIy84gCeSxaUSMSLB0P04XGeMR/edit',
+        wag_individual_finals: 'https://docs.google.com/spreadsheets/d/1JxK0fBLpwElEhYulFP_g6V-p4ThecJdJ/edit',
+        wag_team_finals: 'https://docs.google.com/spreadsheets/d/1D17fv4dCQPbcexNlLZnjqjuL6v_k0LWd/edit',
+        mag_individual_prelims: 'https://docs.google.com/spreadsheets/d/1QOIDlmN7f32tsYtCNJUHArkFvpsZlqvx/edit',
+        mag_team_prelims: 'https://docs.google.com/spreadsheets/d/1MLjUqGoYumqRiwSq1rucQgESb2bZvWh7/edit',
+        mag_individual_finals: 'https://docs.google.com/spreadsheets/d/10PrwDu_bQQzHUEz_T3fm85q0o9XfhwXu/edit',
+        mag_team_finals: 'https://docs.google.com/spreadsheets/d/1mNXF1CNJ7q4lfA4MrDdTZsUVUJqApqS_/edit',
+        tnt_prelims: 'https://docs.google.com/spreadsheets/d/14lnWp5Keud4LuDnnncES744vJKhtrV3k/edit',
+        age_mag: 'https://docs.google.com/spreadsheets/d/1vrlafvOrp0xbwwsnpjJsuM6AL6hSoKgR/edit',
+        age_wag: 'https://docs.google.com/spreadsheets/d/15kzYaYEKW1I5tUJEE1B2YHR1wlSzK7E1/edit',
+    };
+
+    var SHEET_LABELS = {
+        wag_individual_prelims: 'WAG Individual Prelims', wag_team_prelims: 'WAG Team Prelims',
+        wag_individual_finals: 'WAG Individual Finals', wag_team_finals: 'WAG Team Finals',
+        mag_individual_prelims: 'MAG Individual Prelims', mag_team_prelims: 'MAG Team Prelims',
+        mag_individual_finals: 'MAG Individual Finals', mag_team_finals: 'MAG Team Finals',
+        tnt_prelims: 'T&T Prelims',
+        age_mag: 'MAG Roster', age_wag: 'WAG Roster',
+    };
+
+    // ============================================================
+    // CONSTANTS
+    // ============================================================
+    var COLORS = {
+        wag: '#e74c8b', mag: '#3498db', tnt: '#2ecc71', special: '#f39c12',
+        wagLight: 'rgba(231,76,139,0.7)', magLight: 'rgba(52,152,219,0.7)',
+        tntLight: 'rgba(46,204,113,0.7)', specialLight: 'rgba(243,156,18,0.7)',
+    };
+
+    var WAG_APPARATUS = [
+        { key: 'VT_Score', svKey: 'VT_SV', placeKey: 'Vault Place', label: 'Vault', short: 'VT' },
+        { key: 'UB_Score', svKey: 'UB_SV', placeKey: 'Bars Place', label: 'Bars', short: 'UB' },
+        { key: 'BM_Score', svKey: 'BM_SV', placeKey: 'Beam Place', label: 'Beam', short: 'BB' },
+        { key: 'FX_Score', svKey: 'FX_SV', placeKey: 'Floor Place', label: 'Floor', short: 'FX' },
+        { key: 'AA_Score', svKey: null, placeKey: 'AA Place', label: 'All-Around', short: 'AA' },
+    ];
+    var MAG_APPARATUS = [
+        { key: 'FX_Score', svKey: 'FX_SV', placeKey: 'Floor Place', label: 'Floor', short: 'FX' },
+        { key: 'PH_Score', svKey: 'PH_SV', placeKey: 'Pommel Place', label: 'Pommel Horse', short: 'PH' },
+        { key: 'SR_Score', svKey: 'SR_SV', placeKey: 'Rings Place', label: 'Rings', short: 'SR' },
+        { key: 'VT_Score', svKey: 'VT_SV', placeKey: 'Vault Place', label: 'Vault', short: 'VT' },
+        { key: 'PB_Score', svKey: 'PB_SV', placeKey: 'PBars Place', label: 'P-Bars', short: 'PB' },
+        { key: 'HB_Score', svKey: 'HB_SV', placeKey: 'HighBar Place', label: 'High Bar', short: 'HB' },
+        { key: 'AA_Score', svKey: null, placeKey: 'AA Place', label: 'All-Around', short: 'AA' },
+    ];
+    var TNT_APPARATUS = [
+        { key: 'Tumbling_Score', svKey: null, placeKey: 'Tumbling Place', label: 'Tumbling', short: 'TU' },
+        { key: 'Trampoline_Score', svKey: null, placeKey: 'Trampoline Place', label: 'Trampoline', short: 'TR' },
+        { key: 'Synch_Trampoline_Score', svKey: null, placeKey: 'Synch Trampoline Place', label: 'Synchro', short: 'SY' },
+        { key: 'DMT_Score', svKey: null, placeKey: 'DMT Place', label: 'DMT', short: 'DMT' },
+    ];
+
+    var WAG_LEVELS = ['XS', 'XP', 'XD', 'L9', 'Open'];
+    var MAG_LEVELS = ['Dev', 'Int', 'Adv'];
+    var TNT_LEVELS = ['NF', 'IF', 'HF'];
+    var WAG_QUAL_FLAGS = ['AA?', 'VT?', 'UB?', 'BB?', 'FX?'];
+    var MAG_QUAL_FLAGS = ['AA?', 'VT?', 'FX?', 'PH?', 'SR?', 'PB?', 'HB?'];
+
+    var WAG_INDIV_KEYS = ['VT_Score', 'UB_Score', 'BM_Score', 'FX_Score'];
+    var MAG_INDIV_KEYS = ['FX_Score', 'PH_Score', 'SR_Score', 'VT_Score', 'PB_Score', 'HB_Score'];
+
+    // ============================================================
+    // STATE
+    // ============================================================
+    var dataCache = {};
+    var allData = {};
+    var svLookup = {};
+    var charts = [];
+    var levelCheckState = {};
+
+    // ============================================================
+    // DATA FETCHING
+    // ============================================================
+    function getExportUrl(shareUrl) {
+        var match = shareUrl.match(/\/d\/([a-zA-Z0-9_-]+)/);
+        if (match) return 'https://docs.google.com/spreadsheets/d/' + match[1] + '/export?format=xlsx';
+        return shareUrl;
+    }
+
+    async function fetchXLSX(url) {
+        var exportUrl = getExportUrl(url);
+        var response = await fetch(exportUrl);
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        var arrayBuffer = await response.arrayBuffer();
+        var workbook = XLSX.read(arrayBuffer, { type: 'array' });
+        var sheetName = workbook.SheetNames[0];
+        return XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
+    }
+
+    async function loadData(key) {
+        if (dataCache[key]) return dataCache[key];
+        var url = DATA_SOURCES[key];
+        if (!url) throw new Error('No URL for ' + key);
+        var data = await fetchXLSX(url);
+        dataCache[key] = data;
+        return data;
+    }
+
+    // ============================================================
+    // UTILITIES
+    // ============================================================
+    function fmt(n) { return typeof n === 'number' ? n.toLocaleString() : n; }
+    function pct(n, d) { return d > 0 ? (n / d * 100).toFixed(1) + '%' : '\u2014'; }
+    function f3(n) { return typeof n === 'number' ? n.toFixed(3) : '\u2014'; }
+    function athleteKey(row) { return row.Athlete_Email || (row.FirstName + '|' + row.LastName); }
+
+    function getValidScores(rows, scoreCol) {
+        var scores = [];
+        rows.forEach(function(r) { var v = parseFloat(r[scoreCol]); if (v && v > 0) scores.push(v); });
+        return scores;
+    }
+
+    function hasCompleteAA(row, disc) {
+        var keys = disc === 'WAG' ? WAG_INDIV_KEYS : MAG_INDIV_KEYS;
+        for (var i = 0; i < keys.length; i++) {
+            var v = parseFloat(row[keys[i]]);
+            if (!v || v <= 0) return false;
+        }
+        return true;
+    }
+
+    function isIndividualQualifier(row, disc) {
+        var flags = disc === 'WAG' ? WAG_QUAL_FLAGS : MAG_QUAL_FLAGS;
+        for (var i = 0; i < flags.length; i++) {
+            if (row[flags[i]] === 'Y') return true;
+        }
+        return false;
+    }
+
+    function countEvents(row, flags) {
+        return flags.filter(function(f) { return row[f] === 'Y'; }).length;
+    }
+
+    function computeStats(values) {
+        if (!values.length) return null;
+        var sorted = values.slice().sort(function(a, b) { return a - b; });
+        var n = sorted.length;
+        var sum = sorted.reduce(function(a, b) { return a + b; }, 0);
+        var mean = sum / n;
+        var median = n % 2 ? sorted[Math.floor(n / 2)] : (sorted[Math.floor(n / 2) - 1] + sorted[Math.floor(n / 2)]) / 2;
+        var variance = sorted.reduce(function(s, v) { return s + Math.pow(v - mean, 2); }, 0) / n;
+        var stdDev = Math.sqrt(variance);
+        return { n: n, mean: mean, median: median, stdDev: stdDev, min: sorted[0], max: sorted[n - 1] };
+    }
+
+    function buildHistogram(values, binWidth) {
+        binWidth = binWidth || 0.5;
+        if (!values.length) return { labels: [], counts: [] };
+        var min = Math.floor(Math.min.apply(null, values) / binWidth) * binWidth;
+        var max = Math.ceil(Math.max.apply(null, values) / binWidth) * binWidth;
+        var labels = [], counts = [];
+        for (var edge = min; edge < max; edge += binWidth) {
+            labels.push(edge.toFixed(1));
+            var e = edge;
+            counts.push(values.filter(function(v) { return v >= e && v < e + binWidth; }).length);
+        }
+        return { labels: labels, counts: counts };
+    }
+
+    function levelsForDisc(disc) { return disc === 'WAG' ? WAG_LEVELS : disc === 'MAG' ? MAG_LEVELS : disc === 'T&T' ? TNT_LEVELS : []; }
+    function apparatusForDisc(disc) { return disc === 'WAG' ? WAG_APPARATUS : disc === 'MAG' ? MAG_APPARATUS : disc === 'T&T' ? TNT_APPARATUS : []; }
+    function discColor(disc) { return COLORS[disc === 'WAG' ? 'wag' : disc === 'MAG' ? 'mag' : 'tnt']; }
+    function discColorLight(disc) { return COLORS[disc === 'WAG' ? 'wagLight' : disc === 'MAG' ? 'magLight' : 'tntLight']; }
+    function discClass(disc) { return disc === 'WAG' ? 'wag' : disc === 'MAG' ? 'mag' : 'tnt'; }
+
+    function levelShade(disc, levelIdx, totalLevels) {
+        var base = discColor(disc);
+        var opacity = 0.4 + (levelIdx / Math.max(totalLevels - 1, 1)) * 0.5;
+        var r = parseInt(base.slice(1, 3), 16), g = parseInt(base.slice(3, 5), 16), b = parseInt(base.slice(5, 7), 16);
+        return 'rgba(' + r + ',' + g + ',' + b + ',' + opacity + ')';
+    }
+
+    function makeCard(label, value, classes) {
+        var d = document.createElement('div');
+        d.className = 'card ' + (classes || '');
+        d.innerHTML = '<div class="label">' + label + '</div><div class="value">' + fmt(value) + '</div>';
+        return d;
+    }
+    function makeCardDetail(label, value, detail, classes) {
+        var d = document.createElement('div');
+        d.className = 'card ' + (classes || '');
+        d.innerHTML = '<div class="label">' + label + '</div><div class="value">' + fmt(value) + '</div><div class="detail">' + detail + '</div>';
+        return d;
+    }
+
+    function destroyAllCharts() { charts.forEach(function(c) { try { c.destroy(); } catch(e) {} }); charts = []; }
+
+    function makeSortable(table) {
+        var headers = table.querySelectorAll('thead th');
+        var currentSort = { col: -1, asc: true };
+        headers.forEach(function(th, idx) {
+            var arrow = document.createElement('span');
+            arrow.className = 'sort-arrow'; arrow.textContent = ' \u25B2';
+            th.appendChild(arrow);
+            th.addEventListener('click', function() {
+                var tbody = table.querySelector('tbody');
+                var rows = Array.from(tbody.querySelectorAll('tr')).filter(function(r) { return !r.classList.contains('total-row'); });
+                var totalRow = tbody.querySelector('tr.total-row');
+                var asc = currentSort.col === idx ? !currentSort.asc : true;
+                currentSort = { col: idx, asc: asc };
+                headers.forEach(function(h) { var a = h.querySelector('.sort-arrow'); if (a) { a.className = 'sort-arrow'; a.textContent = ' \u25B2'; } });
+                arrow.className = 'sort-arrow active'; arrow.textContent = asc ? ' \u25B2' : ' \u25BC';
+                rows.sort(function(a, b) {
+                    var va = a.cells[idx] ? a.cells[idx].textContent.trim().replace(/,/g, '') : '';
+                    var vb = b.cells[idx] ? b.cells[idx].textContent.trim().replace(/,/g, '') : '';
+                    var na = parseFloat(va), nb = parseFloat(vb);
+                    if (!isNaN(na) && !isNaN(nb)) return asc ? na - nb : nb - na;
+                    return asc ? va.localeCompare(vb) : vb.localeCompare(va);
+                });
+                rows.forEach(function(r) { tbody.appendChild(r); });
+                if (totalRow) tbody.appendChild(totalRow);
+            });
+        });
+    }
+
+    function buildSVLookup(rosterRows) {
+        rosterRows.forEach(function(row) {
+            var key = athleteKey(row);
+            if (!svLookup[key]) svLookup[key] = {};
+            var entry = svLookup[key];
+            entry.CompLevel = row.CompLevel;
+            ['VT_SV','UB_SV','BM_SV','FX_SV','PH_SV','SR_SV','PB_SV','HB_SV'].forEach(function(col) {
+                var v = parseFloat(row[col]); if (v && v > 0) entry[col] = v;
+            });
+        });
+    }
+
+    function getFilteredRows(rows) {
+        var cat = $('nrd-filter-category').value;
+        var filtered = rows.slice();
+        if (cat !== 'all') filtered = filtered.filter(function(r) { return r['Placement Category'] === cat; });
+        return filtered;
+    }
+
+    // ============================================================
+    // REUSABLE: LEVEL CHECKBOX UI
+    // ============================================================
+    function buildLevelCheckboxes(sectionKey, disc, containerEl, onChange) {
+        containerEl.innerHTML = '';
+        var levels = levelsForDisc(disc);
+        if (!levels.length) return [];
+        var stateKey = sectionKey + '_' + disc;
+        if (!levelCheckState[stateKey]) {
+            var defaults = {};
+            levels.forEach(function(lev) {
+                defaults[lev] = !(disc === 'WAG' && lev === 'Open');
+            });
+            levelCheckState[stateKey] = defaults;
+        }
+        var state = levelCheckState[stateKey];
+        var prefix = document.createElement('span');
+        prefix.className = 'lbl-prefix';
+        prefix.textContent = 'Levels:';
+        containerEl.appendChild(prefix);
+        levels.forEach(function(lev) {
+            var lbl = document.createElement('label');
+            var cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.checked = !!state[lev];
+            cb.addEventListener('change', function() {
+                state[lev] = cb.checked;
+                onChange();
+            });
+            lbl.appendChild(cb);
+            lbl.appendChild(document.createTextNode(' ' + lev));
+            containerEl.appendChild(lbl);
+        });
+        return getCheckedLevels(sectionKey, disc);
+    }
+
+    function getCheckedLevels(sectionKey, disc) {
+        var stateKey = sectionKey + '_' + disc;
+        var state = levelCheckState[stateKey];
+        if (!state) return levelsForDisc(disc);
+        return levelsForDisc(disc).filter(function(lev) { return state[lev]; });
+    }
+
+    // ============================================================
+    // REUSABLE: PILL BUILDER
+    // ============================================================
+    function buildPills(pillGroup, disciplines, activeDisc, renderFn) {
+        pillGroup.innerHTML = '';
+        disciplines.forEach(function(disc) {
+            var pill = document.createElement('div');
+            pill.className = 'pill' + (disc === activeDisc ? ' active' : '');
+            pill.textContent = disc;
+            pill.dataset.disc = disc;
+            pill.addEventListener('click', function() { renderFn(disc); });
+            pillGroup.appendChild(pill);
+        });
+    }
+
+    // ============================================================
+    // SECTION RENDERERS (identical to embed version)
+    // ============================================================
+
+    function renderOverview() {
+        var hero = $('nrd-overview-hero'), discCards = $('nrd-overview-discipline'), scoreCards = $('nrd-overview-scores');
+        hero.innerHTML = ''; discCards.innerHTML = ''; scoreCards.innerHTML = '';
+        var uniqueAthletes = new Set(), wagAthletes = new Set(), magAthletes = new Set(), tntAthletes = new Set();
+        (allData.wag_individual_prelims || []).forEach(function(r) { var k = athleteKey(r); uniqueAthletes.add(k); wagAthletes.add(k); });
+        (allData.mag_individual_prelims || []).forEach(function(r) { var k = athleteKey(r); uniqueAthletes.add(k); magAthletes.add(k); });
+        (allData.tnt_prelims || []).forEach(function(r) { var k = athleteKey(r); uniqueAthletes.add(k); tntAthletes.add(k); });
+        var wagIndivQuals = (allData.wag_individual_finals || []).filter(function(r) { return isIndividualQualifier(r, 'WAG'); });
+        var magIndivQuals = (allData.mag_individual_finals || []).filter(function(r) { return isIndividualQualifier(r, 'MAG'); });
+        var wagFinalsCount = new Set(wagIndivQuals.map(athleteKey)).size;
+        var magFinalsCount = new Set(magIndivQuals.map(athleteKey)).size;
+        var totalTeams = (allData.wag_team_prelims || []).length + (allData.mag_team_prelims || []).length;
+        hero.appendChild(makeCard('Total Athletes', uniqueAthletes.size, 'hero'));
+        hero.appendChild(makeCard('Total Teams', totalTeams, 'hero'));
+        hero.appendChild(makeCardDetail('Data Sheets Loaded', Object.keys(allData).length, 'of ' + Object.keys(DATA_SOURCES).length, 'hero'));
+        discCards.appendChild(makeCardDetail('WAG Athletes', wagAthletes.size, wagFinalsCount + ' individual qualifiers', 'wag'));
+        discCards.appendChild(makeCardDetail('MAG Athletes', magAthletes.size, magFinalsCount + ' individual qualifiers', 'mag'));
+        discCards.appendChild(makeCardDetail('T&T Athletes', tntAthletes.size, '', 'tnt'));
+        var wagPrelimsData = allData.wag_individual_prelims || [];
+        var wagAANoOpen = wagPrelimsData.filter(function(r) { return r.CompLevel !== 'Open' && hasCompleteAA(r, 'WAG'); });
+        var wagAAOpen = wagPrelimsData.filter(function(r) { return r.CompLevel === 'Open' && hasCompleteAA(r, 'WAG'); });
+        var magPrelimsData = allData.mag_individual_prelims || [];
+        var magAAComplete = magPrelimsData.filter(function(r) { return hasCompleteAA(r, 'MAG'); });
+        var wagAAScores = getValidScores(wagAANoOpen, 'AA_Score');
+        var wagOpenAAScores = getValidScores(wagAAOpen, 'AA_Score');
+        var magAAScores = getValidScores(magAAComplete, 'AA_Score');
+        var wagAvgAA = wagAAScores.length ? wagAAScores.reduce(function(a,b){return a+b;},0) / wagAAScores.length : 0;
+        var wagOpenAvgAA = wagOpenAAScores.length ? wagOpenAAScores.reduce(function(a,b){return a+b;},0) / wagOpenAAScores.length : 0;
+        var magAvgAA = magAAScores.length ? magAAScores.reduce(function(a,b){return a+b;},0) / magAAScores.length : 0;
+        scoreCards.appendChild(makeCardDetail('WAG Avg AA (excl. Open)', f3(wagAvgAA), 'n=' + wagAAScores.length, 'wag'));
+        scoreCards.appendChild(makeCardDetail('WAG Open Avg AA', f3(wagOpenAvgAA), 'n=' + wagOpenAAScores.length, 'wag'));
+        scoreCards.appendChild(makeCardDetail('MAG Avg AA', f3(magAvgAA), 'n=' + magAAScores.length, 'mag'));
+    }
+
+    function renderScoreDistributions() {
+        var container = $('nrd-score-dist-charts'), pillGroup = $('nrd-score-dist-pills'), levelContainer = $('nrd-score-dist-levels');
+        container.innerHTML = ''; pillGroup.innerHTML = ''; levelContainer.innerHTML = '';
+        var disciplines = ['WAG', 'MAG', 'T&T'], activeDisc = 'WAG', sectionCharts = [];
+        function render(disc) {
+            activeDisc = disc;
+            sectionCharts.forEach(function(c) { try { c.destroy(); } catch(e) {} }); sectionCharts = [];
+            container.innerHTML = '';
+            pillGroup.querySelectorAll('.pill').forEach(function(p) { p.classList.toggle('active', p.dataset.disc === disc); });
+            var checkedLevels = buildLevelCheckboxes('score-dist', disc, levelContainer, function() { render(disc); });
+            if (!checkedLevels.length) { container.innerHTML = '<div class="no-data-msg">Please select at least one level to display data.</div>'; return; }
+            var apparatus = apparatusForDisc(disc);
+            var dataKey = disc === 'WAG' ? 'wag_individual_prelims' : disc === 'MAG' ? 'mag_individual_prelims' : 'tnt_prelims';
+            var allRows = getFilteredRows(allData[dataKey] || []);
+            var rows = allRows.filter(function(r) { return checkedLevels.indexOf(r.CompLevel) !== -1; });
+            apparatus.forEach(function(app) {
+                var appRows = rows;
+                if (app.short === 'AA') { appRows = rows.filter(function(r) { return hasCompleteAA(r, disc); }); }
+                var chartDiv = document.createElement('div'); chartDiv.className = 'chart-container';
+                var canvas = document.createElement('canvas'); chartDiv.appendChild(canvas); container.appendChild(chartDiv);
+                if (checkedLevels.length === 1) {
+                    var scores = getValidScores(appRows, app.key), hist = buildHistogram(scores);
+                    var chart = new Chart(canvas, { type: 'bar', data: { labels: hist.labels, datasets: [{ label: checkedLevels[0], data: hist.counts, backgroundColor: discColorLight(disc), borderRadius: 2 }] }, options: { responsive: true, plugins: { title: { display: true, text: app.label + ' (' + app.short + ') \u2014 ' + checkedLevels[0], font: { size: 14 } }, legend: { display: false } }, scales: { y: { beginAtZero: true, title: { display: true, text: 'Athletes' }, ticks: { precision: 0 } }, x: { title: { display: true, text: 'Score' } } } } });
+                    charts.push(chart); sectionCharts.push(chart);
+                } else {
+                    var allScores = getValidScores(appRows, app.key), hist = buildHistogram(allScores);
+                    var datasets = checkedLevels.map(function(lev, i) {
+                        var levRows = appRows.filter(function(r) { return r.CompLevel === lev; });
+                        var levScores = getValidScores(levRows, app.key);
+                        var counts = hist.labels.map(function(label) { var edge = parseFloat(label); return levScores.filter(function(v) { return v >= edge && v < edge + 0.5; }).length; });
+                        return { label: lev, data: counts, backgroundColor: levelShade(disc, i, checkedLevels.length), borderRadius: 1 };
+                    });
+                    var chart = new Chart(canvas, { type: 'bar', data: { labels: hist.labels, datasets: datasets }, options: { responsive: true, plugins: { title: { display: true, text: app.label + ' (' + app.short + ')', font: { size: 14 } }, legend: { display: true, position: 'top', labels: { boxWidth: 12, font: { size: 11 } } } }, scales: { y: { beginAtZero: true, stacked: true, title: { display: true, text: 'Athletes' }, ticks: { precision: 0 } }, x: { stacked: true, title: { display: true, text: 'Score' } } } } });
+                    charts.push(chart); sectionCharts.push(chart);
+                }
+            });
+        }
+        buildPills(pillGroup, disciplines, activeDisc, render);
+        render(activeDisc);
+    }
+
+    function renderSVDistributions() {
+        var container = $('nrd-sv-dist-charts'), pillGroup = $('nrd-sv-dist-pills'), levelContainer = $('nrd-sv-dist-levels');
+        container.innerHTML = ''; pillGroup.innerHTML = ''; levelContainer.innerHTML = '';
+        var disciplines = ['WAG', 'MAG'], activeDisc = 'WAG', svSecCharts = [];
+        function render(disc) {
+            activeDisc = disc;
+            svSecCharts.forEach(function(c) { try { c.destroy(); } catch(e) {} }); svSecCharts = [];
+            container.innerHTML = '';
+            pillGroup.querySelectorAll('.pill').forEach(function(p) { p.classList.toggle('active', p.dataset.disc === disc); });
+            var checkedLevels = buildLevelCheckboxes('sv-dist', disc, levelContainer, function() { render(disc); });
+            if (!checkedLevels.length) { container.innerHTML = '<div class="no-data-msg">Please select at least one level to display data.</div>'; return; }
+            var apparatus = apparatusForDisc(disc).filter(function(a) { return a.svKey; });
+            var rosterKey = disc === 'WAG' ? 'age_wag' : 'age_mag';
+            var allRows = allData[rosterKey] || [];
+            var rows = allRows.filter(function(r) { return checkedLevels.indexOf(r.CompLevel) !== -1; });
+            apparatus.forEach(function(app) {
+                var chartDiv = document.createElement('div'); chartDiv.className = 'chart-container';
+                var canvas = document.createElement('canvas'); chartDiv.appendChild(canvas); container.appendChild(chartDiv);
+                if (checkedLevels.length === 1) {
+                    var allSVs = []; rows.forEach(function(r) { var v = parseFloat(r[app.svKey]); if (v > 0) allSVs.push(v); });
+                    var meanSV = allSVs.length ? allSVs.reduce(function(a,b){return a+b;},0)/allSVs.length : 0;
+                    var hist = buildHistogram(allSVs, 0.5);
+                    var titleText = meanSV > 0 ? app.label + ' SV (' + app.short + ') \u2014 ' + checkedLevels[0] + ' \u2014 Mean: ' + meanSV.toFixed(3) : app.label + ' SV (' + app.short + ')';
+                    var chart = new Chart(canvas, { type: 'bar', data: { labels: hist.labels, datasets: [{ label: checkedLevels[0], data: hist.counts, backgroundColor: discColorLight(disc), borderRadius: 2 }] }, options: { responsive: true, plugins: { title: { display: true, text: titleText, font: { size: 14 } }, legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } }, x: { title: { display: true, text: 'Start Value' } } } } });
+                    charts.push(chart); svSecCharts.push(chart);
+                } else {
+                    var allSVs = []; rows.forEach(function(r) { var v = parseFloat(r[app.svKey]); if (v > 0) allSVs.push(v); });
+                    var meanSV = allSVs.length ? allSVs.reduce(function(a,b){return a+b;},0)/allSVs.length : 0;
+                    var hist = buildHistogram(allSVs, 0.5);
+                    var datasets = checkedLevels.map(function(lev, i) {
+                        var levRows = rows.filter(function(r) { return r.CompLevel === lev; });
+                        var levSVs = []; levRows.forEach(function(r) { var v = parseFloat(r[app.svKey]); if (v > 0) levSVs.push(v); });
+                        var counts = hist.labels.map(function(label) { var edge = parseFloat(label); return levSVs.filter(function(v) { return v >= edge && v < edge + 0.5; }).length; });
+                        return { label: lev, data: counts, backgroundColor: levelShade(disc, i, checkedLevels.length), borderRadius: 1 };
+                    });
+                    var titleText = meanSV > 0 ? app.label + ' SV (' + app.short + ') \u2014 Mean: ' + meanSV.toFixed(3) : app.label + ' SV (' + app.short + ')';
+                    var chart = new Chart(canvas, { type: 'bar', data: { labels: hist.labels, datasets: datasets }, options: { responsive: true, plugins: { title: { display: true, text: titleText, font: { size: 14 } }, legend: { display: true, position: 'top', labels: { boxWidth: 12, font: { size: 11 } } } }, scales: { y: { beginAtZero: true, stacked: true, ticks: { precision: 0 } }, x: { stacked: true, title: { display: true, text: 'Start Value' } } } } });
+                    charts.push(chart); svSecCharts.push(chart);
+                }
+            });
+        }
+        buildPills(pillGroup, disciplines, activeDisc, render);
+        render(activeDisc);
+    }
+
+    function renderSummaryStats() {
+        var container = $('nrd-stats-tables'), pillGroup = $('nrd-stats-pills'), levelContainer = $('nrd-stats-levels');
+        container.innerHTML = ''; pillGroup.innerHTML = ''; levelContainer.innerHTML = '';
+        var disciplines = ['WAG', 'MAG', 'T&T'], activeDisc = 'WAG';
+        function render(disc) {
+            activeDisc = disc; container.innerHTML = '';
+            pillGroup.querySelectorAll('.pill').forEach(function(p) { p.classList.toggle('active', p.dataset.disc === disc); });
+            var checkedLevels = buildLevelCheckboxes('stats', disc, levelContainer, function() { render(disc); });
+            if (!checkedLevels.length) { container.innerHTML = '<div class="no-data-msg">Please select at least one level to display data.</div>'; return; }
+            var apparatus = apparatusForDisc(disc);
+            var dataKey = disc === 'WAG' ? 'wag_individual_prelims' : disc === 'MAG' ? 'mag_individual_prelims' : 'tnt_prelims';
+            var allRows = getFilteredRows(allData[dataKey] || []);
+            var table = document.createElement('table'); table.className = 'data-table';
+            table.innerHTML = '<thead><tr><th>Apparatus</th><th>Level</th><th class="num-col">N</th><th class="num-col">Mean</th><th class="num-col">Median</th><th class="num-col">Std Dev</th><th class="num-col">Min</th><th class="num-col">Max</th></tr></thead><tbody></tbody>';
+            var tbody = table.querySelector('tbody');
+            apparatus.forEach(function(app) { checkedLevels.forEach(function(lev) {
+                var levRows = allRows.filter(function(r) { return r.CompLevel === lev; });
+                if (app.short === 'AA') { levRows = levRows.filter(function(r) { return hasCompleteAA(r, disc); }); }
+                var scores = getValidScores(levRows, app.key), stats = computeStats(scores);
+                if (!stats) return;
+                var tr = document.createElement('tr');
+                tr.innerHTML = '<td>' + app.label + '</td><td>' + lev + '</td><td class="num">' + stats.n + '</td><td class="num">' + f3(stats.mean) + '</td><td class="num">' + f3(stats.median) + '</td><td class="num">' + f3(stats.stdDev) + '</td><td class="num">' + f3(stats.min) + '</td><td class="num">' + f3(stats.max) + '</td>';
+                tbody.appendChild(tr);
+            }); });
+            container.appendChild(table); makeSortable(table);
+        }
+        buildPills(pillGroup, disciplines, activeDisc, render);
+        render(activeDisc);
+    }
+
+    function renderQualifierAnalysis() {
+        var cardsEl = $('nrd-quals-cards'); cardsEl.innerHTML = '';
+        var teamCardsEl = $('nrd-quals-team-cards'); teamCardsEl.innerHTML = '';
+        var wagFinals = allData.wag_individual_finals || [], magFinals = allData.mag_individual_finals || [];
+        var wagIndivQuals = wagFinals.filter(function(r) { return isIndividualQualifier(r, 'WAG'); });
+        var magIndivQuals = magFinals.filter(function(r) { return isIndividualQualifier(r, 'MAG'); });
+        var wagQualSet = new Set(wagIndivQuals.map(athleteKey));
+        var magQualSet = new Set(magIndivQuals.map(athleteKey));
+        cardsEl.appendChild(makeCard('WAG Individual Qualifiers', wagQualSet.size, 'wag'));
+        cardsEl.appendChild(makeCard('MAG Individual Qualifiers', magQualSet.size, 'mag'));
+        var wagMulti = {};
+        wagIndivQuals.forEach(function(r) { var key = athleteKey(r), evts = countEvents(r, WAG_QUAL_FLAGS); if (!wagMulti[key] || wagMulti[key].count < evts) { wagMulti[key] = { name: r.FirstName + ' ' + r.LastName, club: r.Club_Name, level: r.CompLevel, count: evts, disc: 'WAG', events: WAG_QUAL_FLAGS.filter(function(f) { return r[f] === 'Y'; }).map(function(f) { return f.replace('?', ''); }), category: r['Placement Category'] }; } });
+        var magMulti = {};
+        magIndivQuals.forEach(function(r) { var key = athleteKey(r), evts = countEvents(r, MAG_QUAL_FLAGS); if (!magMulti[key] || magMulti[key].count < evts) { magMulti[key] = { name: r.FirstName + ' ' + r.LastName, club: r.Club_Name, level: r.CompLevel, count: evts, disc: 'MAG', events: MAG_QUAL_FLAGS.filter(function(f) { return r[f] === 'Y'; }).map(function(f) { return f.replace('?', ''); }), category: r['Placement Category'] }; } });
+        Object.keys(wagMulti).forEach(function(key) { if (magMulti[key]) { var w = wagMulti[key], m = magMulti[key]; w.count = w.count + m.count; w.events = w.events.concat(m.events); w.disc = 'WAG+MAG'; delete magMulti[key]; } });
+        var allMulti = [].concat(Object.values(wagMulti), Object.values(magMulti));
+        var multiEvent = allMulti.filter(function(q) { return q.count >= 2; }).length;
+        cardsEl.appendChild(makeCardDetail('Multi-Event Qualifiers', multiEvent, 'qualified for 2+ events'));
+        var wagTeamP = allData.wag_team_prelims || [], magTeamP = allData.mag_team_prelims || [];
+        var wagTeamF = allData.wag_team_finals || [], magTeamF = allData.mag_team_finals || [];
+        teamCardsEl.appendChild(makeCardDetail('WAG Teams (Prelims)', wagTeamP.length, wagTeamF.length + ' in finals', 'wag'));
+        teamCardsEl.appendChild(makeCardDetail('MAG Teams (Prelims)', magTeamP.length, magTeamF.length + ' in finals', 'mag'));
+        var catCounts = {};
+        wagIndivQuals.forEach(function(r) { var c = r['Placement Category'] || 'Unknown'; if (!catCounts[c]) catCounts[c] = { wag: 0, mag: 0 }; catCounts[c].wag++; });
+        magIndivQuals.forEach(function(r) { var c = r['Placement Category'] || 'Unknown'; if (!catCounts[c]) catCounts[c] = { wag: 0, mag: 0 }; catCounts[c].mag++; });
+        var catLabels = Object.keys(catCounts).sort();
+        if (catLabels.length > 0) {
+            var catChart = new Chart($('nrd-chart-quals-category'), { type: 'bar', data: { labels: catLabels, datasets: [{ label: 'WAG', data: catLabels.map(function(c) { return catCounts[c].wag; }), backgroundColor: COLORS.wagLight, borderRadius: 3 }, { label: 'MAG', data: catLabels.map(function(c) { return catCounts[c].mag; }), backgroundColor: COLORS.magLight, borderRadius: 3 }] }, options: { responsive: true, plugins: { title: { display: true, text: 'Individual Finals Qualifiers by Category', font: { size: 14 } } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } } });
+            charts.push(catChart);
+        }
+        var wagPrelims = allData.wag_individual_prelims || [], magPrelims = allData.mag_individual_prelims || [];
+        var lvlContainer = $('nrd-quals-level-table-container'); lvlContainer.innerHTML = '';
+        var levelTable = document.createElement('table'); levelTable.className = 'data-table';
+        levelTable.innerHTML = '<thead><tr><th>Discipline</th><th>Level</th><th class="num-col">Prelims</th><th class="num-col">Ind. Qualifiers</th><th class="num-col">Rate</th></tr></thead><tbody></tbody>';
+        var ltbody = levelTable.querySelector('tbody');
+        [{ disc: 'WAG', prelims: wagPrelims, finals: wagIndivQuals, levels: WAG_LEVELS }, { disc: 'MAG', prelims: magPrelims, finals: magIndivQuals, levels: MAG_LEVELS }].forEach(function(d) { d.levels.forEach(function(lev) { var pCount = new Set(d.prelims.filter(function(r) { return r.CompLevel === lev; }).map(athleteKey)).size; var fCount = new Set(d.finals.filter(function(r) { return r.CompLevel === lev; }).map(athleteKey)).size; var tr = document.createElement('tr'); tr.innerHTML = '<td>' + d.disc + '</td><td>' + lev + '</td><td class="num">' + pCount + '</td><td class="num">' + fCount + '</td><td class="num">' + pct(fCount, pCount) + '</td>'; ltbody.appendChild(tr); }); });
+        lvlContainer.appendChild(levelTable); makeSortable(levelTable);
+        var eventDist = { 1: 0, 2: 0, '3+': 0 };
+        allMulti.forEach(function(q) { if (q.count >= 3) eventDist['3+']++; else if (q.count === 2) eventDist[2]++; else eventDist[1]++; });
+        var doughnut = new Chart($('nrd-chart-quals-multi'), { type: 'doughnut', data: { labels: ['1 Event', '2 Events', '3+ Events'], datasets: [{ data: [eventDist[1], eventDist[2], eventDist['3+']], backgroundColor: [COLORS.wagLight, COLORS.magLight, COLORS.tntLight] }] }, options: { responsive: true, plugins: { title: { display: true, text: 'Events Qualified For (Individual Only)', font: { size: 14 } } } } });
+        charts.push(doughnut);
+        var multiContainer = $('nrd-quals-multi-table-container'); multiContainer.innerHTML = '';
+        var sorted = allMulti.filter(function(q) { return q.count >= 2; }).sort(function(a, b) { return b.count - a.count; });
+        if (sorted.length) { var mt = document.createElement('table'); mt.className = 'data-table'; mt.innerHTML = '<thead><tr><th>Name</th><th>Club</th><th>Disc</th><th>Level</th><th>Category</th><th class="num-col">Events</th><th>Qualified For</th></tr></thead><tbody></tbody>'; var mtb = mt.querySelector('tbody'); sorted.slice(0, 8).forEach(function(q) { var tr = document.createElement('tr'); tr.innerHTML = '<td>' + q.name + '</td><td>' + (q.club || '') + '</td><td>' + (q.disc || '') + '</td><td>' + (q.level || '') + '</td><td>' + (q.category || '') + '</td><td class="num">' + q.count + '</td><td>' + q.events.join(', ') + '</td>'; mtb.appendChild(tr); }); multiContainer.appendChild(mt); makeSortable(mt); }
+        var cutoffPillGroup = $('nrd-cutoff-pills'), cutoffLevelContainer = $('nrd-cutoff-levels');
+        var cutoffContainer = $('nrd-quals-cutoff-container');
+        cutoffPillGroup.innerHTML = ''; cutoffLevelContainer.innerHTML = ''; cutoffContainer.innerHTML = '';
+        var cutoffActiveDisc = 'WAG';
+        function renderCutoffs(disc) {
+            cutoffActiveDisc = disc; cutoffContainer.innerHTML = '';
+            cutoffPillGroup.querySelectorAll('.pill').forEach(function(p) { p.classList.toggle('active', p.dataset.disc === disc); });
+            var checkedLevels = buildLevelCheckboxes('cutoffs', disc, cutoffLevelContainer, function() { renderCutoffs(disc); });
+            if (!checkedLevels.length) { cutoffContainer.innerHTML = '<div class="no-data-msg">Please select at least one level.</div>'; return; }
+            var finals = disc === 'WAG' ? wagIndivQuals : magIndivQuals;
+            var apparatus = apparatusForDisc(disc);
+            var cutoffTable = document.createElement('table'); cutoffTable.className = 'data-table';
+            cutoffTable.innerHTML = '<thead><tr><th>Level</th><th>Event</th><th class="num-col">Cutoff Score</th><th class="num-col"># Qualifiers</th></tr></thead><tbody></tbody>';
+            var ctb = cutoffTable.querySelector('tbody');
+            checkedLevels.forEach(function(lev) { var levRows = finals.filter(function(r) { return r.CompLevel === lev; }); apparatus.forEach(function(app) { var scores = getValidScores(levRows, app.key); if (!scores.length) return; var minScore = Math.min.apply(null, scores); var tr = document.createElement('tr'); tr.innerHTML = '<td>' + lev + '</td><td>' + app.label + '</td><td class="num">' + f3(minScore) + '</td><td class="num">' + scores.length + '</td>'; ctb.appendChild(tr); }); });
+            cutoffContainer.appendChild(cutoffTable); makeSortable(cutoffTable);
+        }
+        buildPills(cutoffPillGroup, ['WAG', 'MAG'], cutoffActiveDisc, renderCutoffs);
+        renderCutoffs(cutoffActiveDisc);
+    }
+
+    function renderDifficultyTrends() {
+        var pillGroup = $('nrd-difficulty-pills'); pillGroup.innerHTML = '';
+        var activeDisc = 'WAG';
+        function render(disc) {
+            activeDisc = disc;
+            pillGroup.querySelectorAll('.pill').forEach(function(p) { p.classList.toggle('active', p.dataset.disc === disc); });
+            var apparatus = apparatusForDisc(disc).filter(function(a) { return a.svKey; });
+            var levels = levelsForDisc(disc);
+            var rosterKey = disc === 'WAG' ? 'age_wag' : 'age_mag';
+            var rows = allData[rosterKey] || [];
+            var barLabels = apparatus.map(function(a) { return a.short; });
+            var datasets = levels.map(function(lev, i) {
+                var levRows = rows.filter(function(r) { return r.CompLevel === lev; });
+                var means = [], stdDevs = [];
+                apparatus.forEach(function(app) {
+                    var svs = []; levRows.forEach(function(r) { var v = parseFloat(r[app.svKey]); if (v > 0) svs.push(v); });
+                    if (svs.length) { var mean = svs.reduce(function(a, b) { return a + b; }, 0) / svs.length; var variance = svs.reduce(function(s, v) { return s + Math.pow(v - mean, 2); }, 0) / svs.length; means.push(mean); stdDevs.push(Math.sqrt(variance)); } else { means.push(0); stdDevs.push(0); }
+                });
+                return { label: lev, data: means, stdDevs: stdDevs, backgroundColor: levelShade(disc, i, levels.length), borderRadius: 3 };
+            });
+            var barCanvas = $('nrd-chart-difficulty-bars'), lineCanvas = $('nrd-chart-difficulty-lines');
+            charts = charts.filter(function(c) { if (c.canvas === barCanvas || c.canvas === lineCanvas) { c.destroy(); return false; } return true; });
+            var errorBarPlugin = { id: 'errorBars', afterDraw: function(chart) { var ctx = chart.ctx; chart.data.datasets.forEach(function(dataset, dsIdx) { if (!dataset.stdDevs) return; var meta = chart.getDatasetMeta(dsIdx); meta.data.forEach(function(bar, idx) { var sd = dataset.stdDevs[idx]; if (!sd || sd === 0) return; var mean = dataset.data[idx]; if (!mean) return; var yScale = chart.scales.y; var yTop = yScale.getPixelForValue(mean + sd); var yBot = yScale.getPixelForValue(mean - sd); var x = bar.x; var halfWidth = Math.min(bar.width * 0.3, 8); ctx.save(); ctx.strokeStyle = 'rgba(0,0,0,0.6)'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(x, yTop); ctx.lineTo(x, yBot); ctx.moveTo(x - halfWidth, yTop); ctx.lineTo(x + halfWidth, yTop); ctx.moveTo(x - halfWidth, yBot); ctx.lineTo(x + halfWidth, yBot); ctx.stroke(); ctx.restore(); }); }); } };
+            var barChart = new Chart(barCanvas, { type: 'bar', data: { labels: barLabels, datasets: datasets }, options: { responsive: true, plugins: { title: { display: true, text: 'Mean Start Value by Apparatus and Level (' + disc + ')', font: { size: 14 } } }, scales: { y: { beginAtZero: true, title: { display: true, text: 'Mean SV' } } } }, plugins: [errorBarPlugin] });
+            charts.push(barChart);
+            var lineDatasets = apparatus.map(function(app, i) { var data = levels.map(function(lev) { var levRows = rows.filter(function(r) { return r.CompLevel === lev; }); var svs = []; levRows.forEach(function(r) { var v = parseFloat(r[app.svKey]); if (v > 0) svs.push(v); }); return svs.length ? svs.reduce(function(a, b) { return a + b; }, 0) / svs.length : null; }); var hue = (i / apparatus.length) * 360; return { label: app.short, data: data, borderColor: 'hsl(' + hue + ',70%,50%)', backgroundColor: 'hsl(' + hue + ',70%,50%)', tension: 0.3, fill: false, pointRadius: 5 }; });
+            var lineChart = new Chart(lineCanvas, { type: 'line', data: { labels: levels, datasets: lineDatasets }, options: { responsive: true, plugins: { title: { display: true, text: 'SV Progression Across Levels (' + disc + ')', font: { size: 14 } } }, scales: { y: { title: { display: true, text: 'Mean SV' } }, x: { title: { display: true, text: 'Level (low \u2192 high)' } } } } });
+            charts.push(lineChart);
+        }
+        buildPills(pillGroup, ['WAG', 'MAG'], activeDisc, render);
+        render(activeDisc);
+    }
+
+    function renderExecutionAnalysis() {
+        var pillGroup = $('nrd-execution-pills'), tableContainer = $('nrd-execution-table-container'), levelContainer = $('nrd-execution-levels');
+        pillGroup.innerHTML = ''; tableContainer.innerHTML = ''; levelContainer.innerHTML = '';
+        var activeDisc = 'WAG';
+        function render(disc) {
+            activeDisc = disc; tableContainer.innerHTML = '';
+            pillGroup.querySelectorAll('.pill').forEach(function(p) { p.classList.toggle('active', p.dataset.disc === disc); });
+            var checkedLevels = buildLevelCheckboxes('execution', disc, levelContainer, function() { render(disc); });
+            if (!checkedLevels.length) { var execCanvas = $('nrd-chart-execution'); charts = charts.filter(function(c) { if (c.canvas === execCanvas) { c.destroy(); return false; } return true; }); var emptyChart = new Chart(execCanvas, { type: 'bar', data: { labels: [], datasets: [] }, options: { responsive: true, plugins: { title: { display: true, text: 'Please select at least one level', font: { size: 14 } } } } }); charts.push(emptyChart); return; }
+            var apparatus = apparatusForDisc(disc).filter(function(a) { return a.svKey; });
+            var dataKey = disc === 'WAG' ? 'wag_individual_prelims' : 'mag_individual_prelims';
+            var allRows = allData[dataKey] || [];
+            var eData = [], tableRows = [];
+            checkedLevels.forEach(function(lev, levIdx) { var levRows = allRows.filter(function(r) { return r.CompLevel === lev; }); apparatus.forEach(function(app) { var eScores = []; levRows.forEach(function(r) { var score = parseFloat(r[app.key]); if (!score || score <= 0) return; var svEntry = svLookup[athleteKey(r)]; var sv = svEntry ? svEntry[app.svKey] : null; if (!sv || sv <= 0) return; eScores.push(score - sv); }); if (eScores.length > 0) { var stats = computeStats(eScores); eData.push({ apparatus: app.short, level: lev, mean: stats.mean, n: stats.n, levIdx: levIdx }); tableRows.push({ apparatus: app.label, level: lev, n: stats.n, mean: stats.mean, median: stats.median, stdDev: stats.stdDev }); } }); });
+            var execCanvas = $('nrd-chart-execution');
+            charts = charts.filter(function(c) { if (c.canvas === execCanvas) { c.destroy(); return false; } return true; });
+            var barLabels = [], barData = [], barColors = [];
+            eData.forEach(function(d) { barLabels.push(d.apparatus + ' ' + d.level); barData.push(d.mean); barColors.push(levelShade(disc, d.levIdx, checkedLevels.length)); });
+            var execChart = new Chart(execCanvas, { type: 'bar', data: { labels: barLabels, datasets: [{ label: 'Mean Implied E-Score', data: barData, backgroundColor: barColors, borderRadius: 3 }] }, options: { responsive: true, plugins: { title: { display: true, text: 'Mean Implied Execution Score (' + disc + ')', font: { size: 14 } }, legend: { display: false } }, scales: { y: { title: { display: true, text: 'E-Score (Score - SV)' } }, x: { ticks: { maxRotation: 45 } } } } });
+            charts.push(execChart);
+            if (tableRows.length) { var table = document.createElement('table'); table.className = 'data-table'; table.innerHTML = '<thead><tr><th>Apparatus</th><th>Level</th><th class="num-col">N</th><th class="num-col">Mean E</th><th class="num-col">Median E</th><th class="num-col">Std Dev</th></tr></thead><tbody></tbody>'; var tbody = table.querySelector('tbody'); tableRows.forEach(function(r) { var tr = document.createElement('tr'); tr.innerHTML = '<td>' + r.apparatus + '</td><td>' + r.level + '</td><td class="num">' + r.n + '</td><td class="num">' + f3(r.mean) + '</td><td class="num">' + f3(r.median) + '</td><td class="num">' + f3(r.stdDev) + '</td>'; tbody.appendChild(tr); }); tableContainer.appendChild(table); makeSortable(table); }
+        }
+        buildPills(pillGroup, ['WAG', 'MAG'], activeDisc, render);
+        render(activeDisc);
+    }
+
+    // ============================================================
+    // RENDER ALL
+    // ============================================================
+    function renderAll() {
+        destroyAllCharts();
+        renderOverview();
+        renderScoreDistributions();
+        renderSVDistributions();
+        renderSummaryStats();
+        renderQualifierAnalysis();
+        renderDifficultyTrends();
+        renderExecutionAnalysis();
+    }
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    async function init() {
+        var bar = $('nrd-loading-bar-fill'), status = $('nrd-loading-status'), detail = $('nrd-loading-detail');
+        var keys = Object.keys(DATA_SOURCES), loaded = 0, total = keys.length;
+        status.textContent = 'Loading 0 of ' + total + ' sheets...';
+
+        await Promise.allSettled(keys.map(async function(key) {
+            try {
+                var data = await loadData(key);
+                loaded++; bar.style.width = (loaded / total * 100) + '%';
+                status.textContent = 'Loading ' + loaded + ' of ' + total + ' sheets...';
+                detail.textContent = SHEET_LABELS[key] || key;
+                allData[key] = data;
+            } catch(e) {
+                loaded++; bar.style.width = (loaded / total * 100) + '%';
+                status.textContent = 'Loading ' + loaded + ' of ' + total + ' sheets...';
+                detail.textContent = 'Failed: ' + (SHEET_LABELS[key] || key);
+                console.warn('Failed to load ' + key + ':', e);
+                allData[key] = [];
+            }
+        }));
+
+        status.textContent = 'Processing data...';
+        buildSVLookup(allData.age_mag || []);
+        buildSVLookup(allData.age_wag || []);
+
+        $('nrd-filter-discipline').addEventListener('change', function() { renderAll(); });
+        $('nrd-filter-category').addEventListener('change', renderAll);
+
+        status.textContent = 'Rendering dashboard...';
+        renderAll();
+
+        $('nrd-loading').style.display = 'none';
+        $('nrd-content').style.display = 'block';
+    }
+
+    init();
+})();
+</script>
+
+</body>
+</html>
